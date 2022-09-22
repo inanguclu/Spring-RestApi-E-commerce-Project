@@ -1,9 +1,9 @@
-package com.works.springecommerceproject.entities;
-
+package com.works.ecommerce.entities;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,10 +13,8 @@ import java.util.List;
 public class Role {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
 
     private String name;
 

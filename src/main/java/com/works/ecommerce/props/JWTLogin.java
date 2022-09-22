@@ -1,4 +1,4 @@
-package com.works.springecommerceproject.props;
+package com.works.ecommerce.props;
 
 import lombok.Data;
 

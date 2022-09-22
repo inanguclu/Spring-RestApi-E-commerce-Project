@@ -1,6 +1,7 @@
-package com.works.springecommerceproject.config;
+package com.works.ecommerce.config;
 
-import com.works.springecommerceproject.services.UserDetailService;
+
+import com.works.ecommerce.services.UserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

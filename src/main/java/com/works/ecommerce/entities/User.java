@@ -1,4 +1,4 @@
-package com.works.springecommerceproject.entities;
+package com.works.ecommerce.entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,20 +12,14 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String firstName;
-
     private String lastName;
-
-    private String eMail;
-
+    private String email;
     private String password;
-
     private boolean enabled;
-
     private boolean tokenExpired;
 
 
@@ -37,7 +31,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
-
 
 
 }

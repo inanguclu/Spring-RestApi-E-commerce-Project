@@ -1,12 +1,11 @@
-package com.works.springecommerceproject.services;
+package com.works.ecommerce.services;
 
-
-import com.works.springecommerceproject.repositories.UserRepository;
-import com.works.springecommerceproject.entities.Role;
-import com.works.springecommerceproject.entities.User;
-import com.works.springecommerceproject.props.JWTLogin;
-import com.works.springecommerceproject.utils.JwtUtil;
-import com.works.springecommerceproject.utils.REnum;
+import com.works.ecommerce.entities.Role;
+import com.works.ecommerce.entities.User;
+import com.works.ecommerce.props.JWTLogin;
+import com.works.ecommerce.repositories.UserRepository;
+import com.works.ecommerce.utils.JwtUtil;
+import com.works.ecommerce.utils.REnum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -23,32 +22,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.*;
 
 @Service
 @Transactional
 public class UserDetailService implements UserDetailsService {
 
-
     final UserRepository userRepository;
     final JwtUtil jwtUtil;
     final AuthenticationManager authenticationManager;
-
-    public UserDetailService(UserRepository userRepository, JwtUtil jwtUtil,@Lazy AuthenticationManager authenticationManager) {
+    public UserDetailService(UserRepository userRepository, JwtUtil jwtUtil, @Lazy AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.jwtUtil = jwtUtil;
         this.authenticationManager = authenticationManager;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> optionalJWTUser = userRepository.findByEMailEqualsIgnoreCase(username);
+        Optional<User> optionalJWTUser = userRepository.findByEmailEqualsIgnoreCase(username);
         if (optionalJWTUser.isPresent()) {
             User u = optionalJWTUser.get();
             UserDetails userDetails = new org.springframework.security.core.userdetails.User(
-                    u.getEMail(),
+                    u.getEmail(),
                     u.getPassword(),
                     u.isEnabled(),
                     u.isTokenExpired(),
@@ -70,8 +65,9 @@ public class UserDetailService implements UserDetailsService {
         }
         return ls;
     }
+
     public ResponseEntity register(User jwtUser) {
-        Optional<User> optionalJWTUser = userRepository.findByEMailEqualsIgnoreCase(jwtUser.getEMail());
+        Optional<User> optionalJWTUser = userRepository.findByEmailEqualsIgnoreCase(jwtUser.getEmail());
         Map<REnum, Object> hm = new LinkedHashMap();
         if ( !optionalJWTUser.isPresent() ) {
             jwtUser.setPassword(  encoder().encode( jwtUser.getPassword() )  );

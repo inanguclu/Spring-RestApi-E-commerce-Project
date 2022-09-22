@@ -1,7 +1,7 @@
-package com.works.springecommerceproject.config;
+package com.works.ecommerce.config;
 
-import com.works.springecommerceproject.services.UserDetailService;
-import com.works.springecommerceproject.utils.JwtUtil;
+import com.works.ecommerce.services.UserDetailService;
+import com.works.ecommerce.utils.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
